@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>맛있는 요리 레시피 큐레이션 | Material You M3</title>
+  <meta name="description" content="구글 문서의 297개 요리 레시피를 종류별, 셰프/채널별로 정리하여 한눈에 찾고 바로 감상하는 구글 머티리얼 3 디자인 웹사이트입니다.">
+
+  <!-- Google Material Symbols & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Material 3 스타일시트 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. 상단 앱바 (Google Material 3 Top App Bar)
+       ========================================================================= -->
+  <header class="top-app-bar">
+    <div class="top-bar-inner">
+      
+      <!-- 로고 및 서비스 타이틀 -->
+      <div class="brand-section">
+        <div class="brand-icon-wrapper">
+          <span class="material-symbols-outlined">skillet</span>
+        </div>
+        <div>
+          <h1 class="brand-title">
+            요리 레시피 큐레이션
+            <span class="brand-badge" id="totalCountBadge">297개</span>
+          </h1>
+          <p class="brand-subtitle">유튜브 셰프 & 카테고리별 스마트 레시피 북</p>
+        </div>
+      </div>
+
+      <!-- M3 알약형 검색창 (Pill Search Bar) -->
+      <div class="search-wrapper">
+        <div class="search-input-container">
+          <span class="material-symbols-outlined search-icon">search</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="요리명, 식재료, 셰프 이름 검색 (예: 짜파게티, 삼겹살, 류수영)..." 
+            autocomplete="off"
+          />
+          <button type="button" id="clearSearchBtn" class="clear-search-btn" title="검색어 지우기">
+            <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 우측 즐겨찾기(찜) 토글 버튼 -->
+      <div class="header-actions">
+        <button type="button" id="favoriteToggleBtn" class="favorite-toggle-btn ripple-target" title="내가 찜한 레시피만 모아보기">
+          <span class="material-symbols-outlined heart-icon" style="font-size: 20px;">favorite</span>
+          <span>찜한 레시피</span>
+          <span id="favCountBadge" style="font-size: 0.78rem; opacity: 0.85;">(0)</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. 안드로이드 퀵 세팅 스타일 알약 필터 칩 바 (M3 Pill Filter Chips)
+       ========================================================================= -->
+  <section class="filter-container" id="filterContainer">
+    
+    <!-- 카테고리별 알약 필터 (윗줄 레이블, 아랫줄 칩) -->
+    <div class="filter-group">
+      <div class="filter-label">
+        <span class="material-symbols-outlined" style="font-size: 18px;">restaurant_menu</span>
+        <span>요리분류</span>
+      </div>
+      <div class="chips-scroll-area" id="categoryChips">
+        <!-- 자바스크립트로 캡슐형 버튼 동적 생성 -->
+      </div>
+    </div>
+
+    <!-- 셰프 및 채널별 알약 필터 (두 줄로 표시) -->
+    <div class="filter-group">
+      <div class="filter-label">
+        <span class="material-symbols-outlined" style="font-size: 18px;">person</span>
+        <span>채널·셰프</span>
+      </div>
+      <div class="chips-scroll-area" id="channelChips">
+        <!-- 자바스크립트로 캡슐형 버튼 동적 생성 (두 줄 레이아웃) -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       3. 상태바 (검색 결과 수, 데스크탑 그리드 열 선택기, 필터 초기화 및 복원 버튼)
+       ========================================================================= -->
+  <div class="status-bar" id="statusBar">
+    <div class="status-left">
+      <div class="status-count">
+        검색된 레시피 <strong id="resultCount">297</strong>개
+      </div>
+      <!-- 데스크탑 4열, 5열, 6열, 7열 선택 세그먼트 버튼 그룹 -->
+      <div class="grid-columns-selector" id="gridColumnsSelector">
+        <span class="grid-selector-label">
+          <span class="material-symbols-outlined" style="font-size: 16px;">view_column</span>
+          그리드
+        </span>
+        <div class="m3-segmented-button-group" id="gridSegmentedGroup">
+          <button type="button" class="segmented-btn active" data-cols="4" title="4열 그리드로 보기">4열</button>
+          <button type="button" class="segmented-btn" data-cols="5" title="5열 그리드로 보기">5열</button>
+          <button type="button" class="segmented-btn" data-cols="6" title="6열 그리드로 보기">6열</button>
+          <button type="button" class="segmented-btn" data-cols="7" title="7열 그리드로 보기">7열</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-active-filters" id="activeFilterStatus">
+      <!-- 삭제된 항목 복원 모달 열기 버튼 -->
+      <button 
+        type="button" 
+        id="restoreDeletedBtn" 
+        class="restore-deleted-btn ripple-target" 
+        style="display: none;" 
+        title="삭제된 레시피 목록을 확인하고 원하는 영상을 선택하여 복원합니다"
+      >
+        <span class="material-symbols-outlined" style="font-size: 16px;">restore_from_trash</span>
+        <span id="deletedCountText">삭제된 레시피 복원 (0)</span>
+      </button>
+
+      <!-- 필터 초기화 버튼 -->
+      <button type="button" id="resetFilterBtn" class="reset-filters-btn" style="display: none;">
+        필터 초기화
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. 구글 킵(Keep) 스타일 레시피 카드 그리드 영역
+       ========================================================================= -->
+  <main class="recipe-container" id="recipeContainer">
+    <div class="recipe-grid grid-cols-4" id="recipeGrid">
+      <!-- 자바스크립트에서 297개 레시피 카드가 렌더링됩니다 -->
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       5. 플로팅 액션 버튼 (FAB - Floating Action Buttons)
+       ========================================================================= -->
+  <div class="fab-container">
+    <!-- 위로 가기 미니 FAB -->
+    <button type="button" id="scrollTopBtn" class="scroll-top-btn ripple-target" title="맨 위로 가기">
+      <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+    
+    <!-- 지메일 스타일 "오늘 뭐 먹지?" 랜덤 레시피 추천 FAB -->
+    <button type="button" id="randomRecipeFab" class="m3-fab ripple-target" title="랜덤 레시피 뽑기">
+      <span class="material-symbols-outlined fab-icon">casino</span>
+      <span>오늘 뭐 먹지?</span>
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       6. M3 유튜브 비디오 재생 모달 팝업 (오류 153 방지 및 전체화면 지원)
+       ========================================================================= -->
+  <div id="videoModal" class="modal-backdrop">
+    <div class="m3-dialog-card" id="videoDialogCard">
+      <div class="dialog-header">
+        <div class="dialog-header-info">
+          <span class="material-symbols-outlined" style="color: var(--md-sys-color-primary);">play_circle</span>
+          <h2 class="dialog-title" id="modalRecipeTitle">레시피 영상 시청</h2>
+        </div>
+        <div class="dialog-header-actions">
+          <!-- 전체화면 토글 버튼 -->
+          <button type="button" class="dialog-icon-btn ripple-target" id="modalFullscreenBtn" title="전체화면으로 크게 보기">
+            <span class="material-symbols-outlined" id="fullscreenIcon">fullscreen</span>
+          </button>
+          <!-- 닫기 버튼 -->
+          <button type="button" class="dialog-close-btn" id="modalCloseBtn" title="닫기">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </div>
+      <div class="dialog-body">
+        <!-- 비디오 임베드 iframe 영역 (referrerpolicy 속성 필수 적용) -->
+        <div class="video-frame-container" id="videoFrameContainer">
+          <iframe 
+            id="videoIframe" 
+            class="video-iframe" 
+            src="" 
+            title="Recipe Video Player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- 하단 메타 정보 및 유튜브 바로가기 바 -->
+        <div class="dialog-meta-info">
+          <div class="dialog-meta-left">
+            <span class="dialog-channel-name" id="modalChannelName"></span>
+            <span class="dialog-category-badge" id="modalCategoryBadge"></span>
+          </div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="dialog-external-btn ripple-target" id="modalExternalLink" title="YouTube에서 원본 영상 보기">
+            <span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
+            <span>YouTube에서 보기</span>
+          </a>
+        </div>
+
+        <!-- 유튜브 임베드 정책/오류 대비 친절한 안내 배너 -->
+        <div class="video-error-help-banner">
+          <span class="material-symbols-outlined" style="font-size: 20px; color: var(--md-sys-color-primary); flex-shrink: 0;">info</span>
+          <span>영상에 재생 제한이나 오류가 표시될 경우, 상단의 <strong>'YouTube에서 보기'</strong> 버튼을 누르시면 유튜브 앱 또는 웹에서 원본 영상을 즉시 감상하실 수 있습니다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       7. M3 "오늘 뭐 먹지?" 랜덤 추천 모달 팝업
+       ========================================================================= -->
+  <div id="randomModal" class="modal-backdrop">
+    <div class="m3-dialog-card" style="max-width: 500px;">
+      <div class="dialog-header">
+        <div class="dialog-header-info">
+          <span class="material-symbols-outlined" style="color: var(--md-sys-color-primary);">casino</span>
+          <h2 class="dialog-title">오늘의 추천 요리!</h2>
+        </div>
+        <button type="button" class="dialog-close-btn" id="randomModalCloseBtn" title="닫기">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="dialog-body" style="text-align: center;" id="randomModalBody">
+        <!-- 자바스크립트로 추천 카드 렌더링 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       8. 요리분류(카테고리) 수정 모달 팝업 (Category Edit Modal)
+       ========================================================================= -->
+  <div id="categoryEditModal" class="modal-backdrop">
+    <div class="m3-dialog-card" style="max-width: 520px;">
+      <div class="dialog-header">
+        <div class="dialog-header-info">
+          <span class="material-symbols-outlined" style="color: var(--md-sys-color-primary);">edit_note</span>
+          <h2 class="dialog-title">요리 분류 변경</h2>
+        </div>
+        <button type="button" class="dialog-close-btn" id="categoryEditCloseBtn" title="닫기">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <p style="font-size: 0.92rem; color: var(--md-sys-color-on-surface-variant);">
+          <strong id="editTargetRecipeTitle" style="color: var(--md-sys-color-on-surface);"></strong><br>
+          이 요리의 새 분류를 선택해 주세요. (새로고침 후에도 자동 보존됩니다)
+        </p>
+        <div class="category-option-list" id="categoryOptionList">
+          <!-- 자바스크립트로 생성 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       9. 카드 삭제 확인 다이얼로그 (Delete Confirmation Dialog)
+       ========================================================================= -->
+  <div id="deleteConfirmModal" class="modal-backdrop">
+    <div class="m3-dialog-card" style="max-width: 440px;">
+      <div class="dialog-header">
+        <div class="dialog-header-info">
+          <span class="material-symbols-outlined" style="color: var(--md-sys-color-error);">delete_forever</span>
+          <h2 class="dialog-title">레시피 카드 삭제</h2>
+        </div>
+        <button type="button" class="dialog-close-btn" id="deleteConfirmCloseBtn" title="닫기">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <p style="font-size: 0.95rem; color: var(--md-sys-color-on-surface); line-height: 1.5;">
+          <strong id="deleteTargetRecipeTitle" style="color: var(--md-sys-color-error);"></strong><br><br>
+          정말 이 레시피 카드를 목록에서 삭제하시겠습니까?<br>
+          <span style="font-size: 0.82rem; color: var(--md-sys-color-on-surface-variant);">
+            * 상단의 '삭제된 레시피 복원' 버튼을 누르면 언제든 다시 선택하여 복구할 수 있습니다.
+          </span>
+        </p>
+        <div class="dialog-action-buttons">
+          <button type="button" class="btn-secondary ripple-target" id="cancelDeleteBtn">취소</button>
+          <button type="button" class="btn-danger ripple-target" id="confirmDeleteBtn">삭제하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       10. 삭제된 레시피 선택 복원 모달 팝업 (Restore Select Modal)
+       ========================================================================= -->
+  <div id="restoreSelectModal" class="modal-backdrop">
+    <div class="m3-dialog-card" style="max-width: 620px;">
+      <div class="dialog-header">
+        <div class="dialog-header-info">
+          <span class="material-symbols-outlined" style="color: var(--md-sys-color-primary);">restore_from_trash</span>
+          <h2 class="dialog-title">삭제된 레시피 복원 선택</h2>
+        </div>
+        <button type="button" class="dialog-close-btn" id="restoreSelectCloseBtn" title="닫기">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <p style="font-size: 0.92rem; color: var(--md-sys-color-on-surface-variant); margin-bottom: 6px;">
+          삭제되었던 레시피 목록입니다. 복원시킬 영상을 선택하거나 한 번에 모두 복원하세요:
+        </p>
+        
+        <!-- 삭제된 레시피 리스트 영역 -->
+        <div class="restore-select-list" id="restoreSelectList">
+          <!-- 자바스크립트로 삭제된 영상 리스트 렌더링 -->
+        </div>
+
+        <!-- 하단 액션 버튼 그룹 -->
+        <div class="dialog-action-buttons" style="margin-top: 14px; border-top: 1px solid rgba(121, 116, 126, 0.15); padding-top: 12px;">
+          <button type="button" class="btn-secondary ripple-target" id="closeRestoreModalBtn">닫기</button>
+          <button type="button" class="btn-primary ripple-target" id="restoreAllItemsBtn">
+            <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">restart_alt</span>
+            전체 모두 복원하기
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       11. 토스트 메시지 (M3 Toast)
+       ========================================================================= -->
+  <div id="toastMessage" class="m3-toast">
+    <span class="material-symbols-outlined" id="toastIcon" style="font-size: 20px;">info</span>
+    <span id="toastText">알림 내용</span>
+  </div>
+
+  <!-- 데이터 및 애플리케이션 스크립트 연결 -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

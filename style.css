@@ -1,0 +1,1462 @@
+/* ==========================================================================
+   Google Material 3 (Material You) 디자인 시스템 스타일시트
+   - 프로젝트: 요리 레시피 큐레이션 웹 애플리케이션
+   - 컨셉: Google M3 Tonal Palette, Dynamic Pill Shape, Google Keep Card Style
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS 변수 및 M3 토널 컬러 시스템 (Tonal Color System)
+   -------------------------------------------------------------------------- */
+:root {
+  /* M3 Primary & Primary Container (프라이머리 딥 퍼플 & 파스텔 보라) */
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #EADDFF;
+  --md-sys-color-on-primary-container: #21005D;
+
+  /* M3 Secondary & Secondary Container */
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #E8DEF8;
+  --md-sys-color-on-secondary-container: #1D192B;
+
+  /* M3 Tertiary (다이내믹 액센트) */
+  --md-sys-color-tertiary: #7D5260;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #FFD8E4;
+  --md-sys-color-on-tertiary-container: #31111D;
+
+  /* M3 Error & Danger (삭제 등 위험 작업) */
+  --md-sys-color-error: #B3261E;
+  --md-sys-color-on-error: #FFFFFF;
+  --md-sys-color-error-container: #F9DEDC;
+  --md-sys-color-on-error-container: #410E0B;
+
+  /* M3 Surface & Background (토널 레이어링 베이스) */
+  --md-sys-color-background: #F3EDF7;
+  --md-sys-color-on-background: #1D1B20;
+  --md-sys-color-surface: #F3EDF7;
+  --md-sys-color-on-surface: #1D1B20;
+  --md-sys-color-surface-variant: #E7E0EC;
+  --md-sys-color-on-surface-variant: #49454F;
+  --md-sys-color-surface-container-lowest: #FFFFFF;
+  --md-sys-color-surface-container-low: #F7F2FA;
+  --md-sys-color-surface-container: #F3EDF7;
+  --md-sys-color-surface-container-high: #ECE6F0;
+  --md-sys-color-surface-container-highest: #E6E0E9;
+
+  /* M3 Outline & Shadows */
+  --md-sys-color-outline: #79747E;
+  --md-sys-color-outline-variant: #CAC4D0;
+  --md-sys-color-scrim: #000000;
+
+  /* 즐겨찾기 하이라이트 색상 */
+  --md-color-favorite: #E91E63;
+
+  /* M3 기하학적 둥글기 (Border Radius Tokens) */
+  --md-shape-corner-none: 0px;
+  --md-shape-corner-extra-small: 4px;
+  --md-shape-corner-small: 8px;
+  --md-shape-corner-medium: 12px;
+  --md-shape-corner-large: 16px;
+  --md-shape-corner-extra-large: 28px;
+  --md-shape-corner-full: 9999px; /* 완전한 캡슐형 알약(Pill) */
+
+  /* M3 부드러운 전환 효과 (Easing) */
+  --md-motion-easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+  --md-motion-duration-short: 200ms;
+  --md-motion-duration-medium: 300ms;
+}
+
+/* --------------------------------------------------------------------------
+   2. 전역 리셋 및 기본 타이포그래피 (Typography)
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Google Sans', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 90px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Material Ripple (물결 클릭 인터랙션) 스타일
+   -------------------------------------------------------------------------- */
+.ripple-target {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.15;
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple-anim 600ms linear;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. 상단 앱바 (Top App Bar & Header)
+   -------------------------------------------------------------------------- */
+.top-app-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(243, 237, 247, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(121, 116, 126, 0.12);
+  padding: 12px 24px;
+}
+
+.top-bar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--md-shape-corner-medium);
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--md-sys-color-on-surface);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  padding: 2px 8px;
+  border-radius: var(--md-shape-corner-full);
+}
+
+.brand-subtitle {
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   5. M3 알약형 서치바 (Google Pill Search Bar)
+   -------------------------------------------------------------------------- */
+.search-wrapper {
+  flex: 1;
+  max-width: 600px;
+  min-width: 280px;
+  position: relative;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--md-sys-color-surface-container-highest);
+  border-radius: var(--md-shape-corner-full);
+  padding: 6px 18px;
+  transition: all var(--md-motion-duration-short) var(--md-motion-easing-standard);
+  border: 1px solid transparent;
+}
+
+.search-input-container:focus-within {
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 4px 12px rgba(103, 80, 164, 0.12);
+}
+
+.search-icon {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  color: var(--md-sys-color-on-surface);
+  font-family: inherit;
+}
+
+.search-input::placeholder {
+  color: var(--md-sys-color-outline);
+}
+
+.clear-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--md-sys-color-on-surface-variant);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--md-shape-corner-full);
+}
+
+.clear-search-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.clear-search-btn.active {
+  display: flex;
+}
+
+/* 상단 우측 즐겨찾기 버튼 */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.favorite-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-full);
+  padding: 8px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--md-motion-duration-short) var(--md-motion-easing-standard);
+}
+
+.favorite-toggle-btn:hover {
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+.favorite-toggle-btn.active {
+  background-color: #FCE4EC;
+  border-color: #F8BBD0;
+  color: var(--md-color-favorite);
+}
+
+.favorite-toggle-btn.active .heart-icon {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* --------------------------------------------------------------------------
+   6. 필터 칩 섹션 (Quick Settings Pill Chips - M3)
+   - 요리분류: 가로 스크롤
+   - 채널·셰프: 스크롤 없이 시원하게 '두 줄(2 rows)'로 펼쳐짐!
+   -------------------------------------------------------------------------- */
+.filter-container {
+  max-width: 1400px;
+  margin: 16px auto 12px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: max-width 0.3s ease;
+}
+
+/* 레이블과 칩 영역 사이 줄바꿈 */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+/* 요리분류 / 채널·셰프 레이블 (글자 쪼개짐 없이 온전히 한 줄로 표시) */
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--md-sys-color-primary);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+}
+
+/* 요리분류 칩 영역: 기본 가로 스크롤 */
+.chips-scroll-area {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--md-sys-color-outline-variant) transparent;
+}
+
+.chips-scroll-area::-webkit-scrollbar {
+  height: 5px;
+}
+
+.chips-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chips-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-full);
+}
+
+/* 채널·셰프 칩 영역: 두 줄로 깔끔하게 감싸져서 한눈에 표시 */
+#channelChips {
+  display: flex;
+  flex-wrap: wrap;        /* 2줄로 자동 줄바꿈되어 펼쳐짐 */
+  gap: 8px;
+  width: 100%;
+  padding: 4px 2px 8px;
+  overflow-x: visible;    /* 가로 스크롤바 제거 */
+}
+
+/* 완전한 캡슐형 둥근 알약 버튼 (Pill Button)
+   - flex-shrink: 0 을 주어 텍스트가 찌그러지거나 잘리지 않고 온전히 다 나옴! */
+.m3-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  color: var(--md-sys-color-on-surface-variant);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-full);
+  padding: 7px 18px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  white-space: nowrap; /* 줄바꿈 금지 */
+  flex-shrink: 0;       /* 크기 축소 금지! 모든 텍스트가 100% 온전히 출력됨 */
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--md-motion-duration-short) var(--md-motion-easing-standard);
+}
+
+.m3-chip:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  border-color: var(--md-sys-color-outline);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* 활성화된 알약 칩 (M3 Filter Selected State) */
+.m3-chip.active {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border-color: var(--md-sys-color-primary);
+  font-weight: 700;
+}
+
+.m3-chip .chip-count {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  background-color: rgba(0, 0, 0, 0.06);
+  padding: 1px 6px;
+  border-radius: var(--md-shape-corner-full);
+  flex-shrink: 0;
+}
+
+.m3-chip.active .chip-count {
+  background-color: rgba(33, 0, 93, 0.12);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+/* --------------------------------------------------------------------------
+   7. 요약 상태바 (Status Bar) & 데스크탑 4/5/6/7열 그리드 선택기
+   -------------------------------------------------------------------------- */
+.status-bar {
+  max-width: 1400px;
+  margin: 6px auto 16px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: var(--md-sys-color-on-surface-variant);
+  flex-wrap: wrap;
+  gap: 12px;
+  transition: max-width 0.3s ease;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.status-count strong {
+  color: var(--md-sys-color-primary);
+  font-weight: 700;
+}
+
+/* 데스크탑 4열 / 5열 / 6열 / 7열 선택기 (M3 Segmented Buttons) */
+.grid-columns-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grid-selector-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.m3-segmented-button-group {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-full);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.segmented-btn {
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--md-sys-color-outline-variant);
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: all var(--md-motion-duration-short) ease;
+  user-select: none;
+}
+
+.segmented-btn:last-child {
+  border-right: none;
+}
+
+.segmented-btn:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+}
+
+.segmented-btn.active {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-weight: 700;
+}
+
+.status-active-filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reset-filters-btn {
+  background: none;
+  border: none;
+  color: var(--md-sys-color-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 2px 6px;
+}
+
+.reset-filters-btn:hover {
+  opacity: 0.8;
+}
+
+/* 삭제된 항목 복원 버튼 */
+.restore-deleted-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+  border: 1px solid #F2B8B5;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: var(--md-shape-corner-full);
+  cursor: pointer;
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.restore-deleted-btn:hover {
+  background-color: #F2B8B5;
+}
+
+/* --------------------------------------------------------------------------
+   8. 레시피 카드 그리드 (Google Keep Style) & 동적 열(Column) 시스템
+   -------------------------------------------------------------------------- */
+.recipe-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  transition: max-width 0.3s ease;
+}
+
+/* 열 선택에 따른 상단 및 그리드 너비 자동 확장 (와이드 화면 최적화) */
+.recipe-container.cols-4 { max-width: 1440px; }
+.recipe-container.cols-5 { max-width: 1680px; }
+.recipe-container.cols-6 { max-width: 1920px; }
+.recipe-container.cols-7 { max-width: 96vw; }
+
+.status-bar.cols-4, .filter-container.cols-4 { max-width: 1440px; }
+.status-bar.cols-5, .filter-container.cols-5 { max-width: 1680px; }
+.status-bar.cols-6, .filter-container.cols-6 { max-width: 1920px; }
+.status-bar.cols-7, .filter-container.cols-7 { max-width: 96vw; }
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+  align-items: start;
+  transition: gap 0.2s ease;
+}
+
+/* 데스크탑(1100px 이상) 화면에서 사용자가 선택한 4열, 5열, 6열, 7열 강제 적용 */
+@media (min-width: 1100px) {
+  .recipe-grid.grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px;
+  }
+  .recipe-grid.grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 16px;
+  }
+  .recipe-grid.grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+  .recipe-grid.grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    gap: 12px;
+  }
+
+  /* 6열 및 7열일 때 카드가 세련되고 균형 있게 맞추어지도록 텍스트/패딩 마이크로 조정 */
+  .recipe-grid.grid-cols-6 .card-content,
+  .recipe-grid.grid-cols-7 .card-content {
+    padding: 12px;
+    gap: 8px;
+  }
+  .recipe-grid.grid-cols-6 .card-title,
+  .recipe-grid.grid-cols-7 .card-title {
+    font-size: 0.92rem;
+    min-height: 2.6em;
+  }
+  .recipe-grid.grid-cols-7 .card-channel-pill {
+    font-size: 0.74rem;
+    padding: 3px 8px;
+  }
+  .recipe-grid.grid-cols-7 .card-play-btn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* 구글 킵(Google Keep) 스타일 레시피 카드 */
+.recipe-card {
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-large);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--md-motion-duration-short) var(--md-motion-easing-standard),
+              box-shadow var(--md-motion-duration-short) var(--md-motion-easing-standard),
+              border-color var(--md-motion-duration-short) var(--md-motion-easing-standard);
+  cursor: pointer;
+  position: relative;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(103, 80, 164, 0.14);
+  border-color: var(--md-sys-color-primary);
+}
+
+/* 카드 상단 썸네일 영역 */
+.card-thumbnail-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--md-sys-color-surface-container-high);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--md-motion-easing-standard);
+}
+
+.recipe-card:hover .card-thumbnail-img {
+  transform: scale(1.05);
+}
+
+/* 미디어 타입 배지 (Shorts, Video, Article) */
+.card-media-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(29, 27, 32, 0.85);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--md-shape-corner-full);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-media-badge.shorts {
+  background-color: rgba(255, 0, 0, 0.88);
+}
+
+.card-media-badge.playlist {
+  background-color: rgba(103, 80, 164, 0.88);
+}
+
+/* 카드 상단 우측 버튼 그룹: 삭제 + 찜하기 */
+.card-actions-top {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+}
+
+/* 카드 삭제 버튼 */
+.card-delete-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--md-shape-corner-full);
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--md-sys-color-outline);
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.card-delete-btn:hover {
+  transform: scale(1.15);
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-error);
+}
+
+/* 북마크/즐겨찾기 버튼 */
+.card-favorite-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--md-shape-corner-full);
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--md-sys-color-outline);
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.card-favorite-btn:hover {
+  transform: scale(1.15);
+  background-color: #FFFFFF;
+  color: var(--md-color-favorite);
+}
+
+.card-favorite-btn.favorited {
+  color: var(--md-color-favorite);
+}
+
+.card-favorite-btn.favorited .heart-icon {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* 카드 본문 콘텐츠 */
+.card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.card-header-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-index-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--md-sys-color-primary);
+  background-color: var(--md-sys-color-secondary-container);
+  padding: 2px 8px;
+  border-radius: var(--md-shape-corner-full);
+}
+
+/* 요리분류(카테고리) 수정 가능 버튼 */
+.card-category-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant);
+  background-color: var(--md-sys-color-surface-container-high);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  padding: 3px 9px;
+  border-radius: var(--md-shape-corner-full);
+  cursor: pointer;
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.card-category-btn:hover {
+  background-color: var(--md-sys-color-primary-container);
+  border-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.card-category-btn .edit-icon {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--md-sys-color-on-surface);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.8em;
+}
+
+/* 셰프/채널 캡슐 태그 */
+.card-channel-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--md-sys-color-primary);
+  background-color: rgba(103, 80, 164, 0.08);
+  padding: 4px 10px;
+  border-radius: var(--md-shape-corner-full);
+  align-self: flex-start;
+}
+
+.channel-icon {
+  font-size: 15px;
+}
+
+/* 카드 하단 액션 버튼 바 */
+.card-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(121, 116, 126, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-tags-list {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.card-small-tag {
+  font-size: 0.72rem;
+  color: var(--md-sys-color-outline);
+}
+
+.card-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  border-radius: var(--md-shape-corner-full);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--md-motion-duration-short) ease;
+}
+
+.card-play-btn:hover {
+  background-color: #513B8A;
+}
+
+/* 결과 없음 상태 */
+.no-results-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border-radius: var(--md-shape-corner-extra-large);
+  border: 1px dashed var(--md-sys-color-outline-variant);
+}
+
+.no-results-icon {
+  font-size: 56px;
+  color: var(--md-sys-color-outline);
+  margin-bottom: 12px;
+}
+
+.no-results-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+  margin-bottom: 8px;
+}
+
+.no-results-desc {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   9. M3 플로팅 액션 버튼 (FAB - Floating Action Button)
+   -------------------------------------------------------------------------- */
+.fab-container {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 100;
+}
+
+.m3-fab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: none;
+  border-radius: var(--md-shape-corner-large);
+  padding: 16px 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all var(--md-motion-duration-short) var(--md-motion-easing-standard);
+}
+
+.m3-fab:hover {
+  background-color: #D8C5FC;
+  box-shadow: 0 6px 20px rgba(103, 80, 164, 0.28);
+  transform: translateY(-2px);
+}
+
+.m3-fab .fab-icon {
+  font-size: 24px;
+}
+
+.scroll-top-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--md-shape-corner-full);
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  align-self: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top-btn:hover {
+  background-color: var(--md-sys-color-surface-variant);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   10. M3 모달 팝업 & 다이얼로그 (Dialog / Modal) & 전체화면 모드
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--md-motion-duration-medium) ease,
+              visibility var(--md-motion-duration-medium) ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.m3-dialog-card {
+  background-color: var(--md-sys-color-surface-container-high);
+  border-radius: var(--md-shape-corner-extra-large);
+  max-width: 840px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+  transform: scale(0.92);
+  transition: transform var(--md-motion-duration-medium) var(--md-motion-easing-standard),
+              max-width var(--md-motion-duration-medium) ease,
+              max-height var(--md-motion-duration-medium) ease,
+              border-radius var(--md-motion-duration-medium) ease;
+}
+
+.modal-backdrop.open .m3-dialog-card {
+  transform: scale(1);
+}
+
+/* 전체화면(Fullscreen) 모달 모드 스타일 */
+.m3-dialog-card.fullscreen-mode {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  max-height: 100vh !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+.modal-backdrop:has(.fullscreen-mode) {
+  padding: 0 !important;
+}
+
+.m3-dialog-card.fullscreen-mode .dialog-body {
+  height: calc(100vh - 70px);
+  padding: 16px 24px;
+}
+
+.m3-dialog-card.fullscreen-mode .video-frame-container {
+  flex: 1;
+  aspect-ratio: unset;
+  height: 100%;
+  max-height: calc(100vh - 160px);
+}
+
+.m3-dialog-card.fullscreen-mode .video-frame-container.shorts-ratio {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.dialog-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(121, 116, 126, 0.15);
+  flex-shrink: 0;
+}
+
+.dialog-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.dialog-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dialog-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.dialog-icon-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--md-shape-corner-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: background-color var(--md-motion-duration-short) ease,
+              color var(--md-motion-duration-short) ease;
+}
+
+.dialog-icon-btn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: var(--md-sys-color-on-surface);
+}
+
+.dialog-close-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--md-shape-corner-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: background-color var(--md-motion-duration-short) ease;
+}
+
+.dialog-close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.dialog-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.video-frame-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000000;
+  border-radius: var(--md-shape-corner-large);
+  overflow: hidden;
+  position: relative;
+}
+
+.video-frame-container.shorts-ratio {
+  max-width: 380px;
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+}
+
+.video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.dialog-meta-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  padding: 16px;
+  border-radius: var(--md-shape-corner-large);
+  flex-shrink: 0;
+}
+
+.dialog-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dialog-channel-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--md-sys-color-primary);
+}
+
+.dialog-category-badge {
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.dialog-external-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: var(--md-shape-corner-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color var(--md-motion-duration-short) ease;
+}
+
+.dialog-external-btn:hover {
+  background-color: #513B8A;
+}
+
+/* 유튜브 임베드 정책/오류 대비 안내 배너 */
+.video-error-help-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-medium);
+  padding: 10px 16px;
+  font-size: 0.84rem;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.45;
+}
+
+.video-error-help-banner strong {
+  color: var(--md-sys-color-primary);
+}
+
+/* 카테고리 수정 선택 다이얼로그 리스트 */
+.category-option-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 12px 0 6px;
+}
+
+.category-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-medium);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.category-option-btn:hover {
+  background-color: var(--md-sys-color-primary-container);
+  border-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.category-option-btn.selected {
+  background-color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+/* --------------------------------------------------------------------------
+   11. 삭제된 레시피 선택 복원 모달 스타일 (신규)
+   -------------------------------------------------------------------------- */
+.restore-select-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 4px 2px;
+}
+
+.restore-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-medium);
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.restore-item-card:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  border-color: var(--md-sys-color-primary);
+}
+
+.restore-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.restore-thumb-img {
+  width: 64px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: var(--md-shape-corner-small);
+  flex-shrink: 0;
+}
+
+.restore-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.restore-item-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.restore-item-meta {
+  font-size: 0.76rem;
+  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.single-restore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: 1px solid var(--md-sys-color-primary);
+  border-radius: var(--md-shape-corner-full);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--md-motion-duration-short) ease;
+}
+
+.single-restore-btn:hover {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+/* 삭제 확인 다이얼로그 버튼 */
+.dialog-action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.btn-secondary {
+  padding: 9px 18px;
+  border-radius: var(--md-shape-corner-full);
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--md-motion-duration-short) ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+.btn-primary {
+  padding: 9px 20px;
+  border-radius: var(--md-shape-corner-full);
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--md-motion-duration-short) ease;
+}
+
+.btn-primary:hover {
+  background-color: #513B8A;
+}
+
+.btn-danger {
+  padding: 9px 20px;
+  border-radius: var(--md-shape-corner-full);
+  background-color: var(--md-sys-color-error);
+  color: var(--md-sys-color-on-error);
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--md-motion-duration-short) ease;
+}
+
+.btn-danger:hover {
+  background-color: #8C1D18;
+}
+
+/* --------------------------------------------------------------------------
+   12. 토스트 알림 (Toast Notification)
+   -------------------------------------------------------------------------- */
+.m3-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--md-sys-color-on-surface);
+  color: var(--md-sys-color-surface-container-lowest);
+  padding: 12px 24px;
+  border-radius: var(--md-shape-corner-full);
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 300;
+  opacity: 0;
+  transition: all var(--md-motion-duration-medium) var(--md-motion-easing-standard);
+  pointer-events: none;
+}
+
+.m3-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   13. 반응형 미디어 쿼리 (Responsive Media Queries)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1099px) {
+  .grid-columns-selector {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-app-bar {
+    padding: 12px 16px;
+  }
+  
+  .top-bar-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brand-section {
+    justify-content: space-between;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+    order: 3;
+  }
+
+  .header-actions {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+  }
+
+  .filter-container {
+    padding: 0 16px;
+  }
+
+  .recipe-container {
+    padding: 0 16px;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .fab-container {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .m3-fab {
+    padding: 14px 18px;
+    font-size: 0.88rem;
+  }
+
+  .video-frame-container.shorts-ratio {
+    max-width: 100%;
+    aspect-ratio: 9 / 16;
+  }
+}

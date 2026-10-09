@@ -282,6 +282,44 @@ body {
   font-variation-settings: 'FILL' 1;
 }
 
+/* 상단 오늘 뭐 먹지? 랜덤 추천 버튼 (Google M3 Tonal Pill Style) */
+.today-random-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: 1px solid rgba(103, 80, 164, 0.22);
+  border-radius: var(--md-shape-corner-full);
+  padding: 8px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(103, 80, 164, 0.12);
+  transition: all var(--md-motion-duration-short) var(--md-motion-easing-standard);
+  white-space: nowrap;
+}
+
+.today-random-btn:hover {
+  background-color: #D8C5FC;
+  box-shadow: 0 4px 10px rgba(103, 80, 164, 0.22);
+  transform: translateY(-1px);
+}
+
+.today-random-btn:active {
+  transform: scale(0.97);
+}
+
+.today-random-btn .dice-icon {
+  font-size: 20px;
+  color: var(--md-sys-color-primary);
+  transition: transform 0.3s ease;
+}
+
+.today-random-btn:hover .dice-icon {
+  transform: rotate(35deg) scale(1.15);
+}
+
 /* --------------------------------------------------------------------------
    6. 필터 칩 섹션 (Quick Settings Pill Chips - M3)
    - 요리분류: 가로 스크롤
@@ -293,65 +331,112 @@ body {
   padding: 0 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
   transition: max-width 0.3s ease;
 }
 
-/* 레이블과 칩 영역 사이 줄바꿈 */
-.filter-group {
+/* --------------------------------------------------------------------------
+   M3 필터 탭 내비게이션 바 (요리분류 / 채널·셰프 탭)
+   -------------------------------------------------------------------------- */
+.m3-filter-tabs {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  width: 100%;
-}
-
-/* 요리분류 / 채널·셰프 레이블 (글자 쪼개짐 없이 온전히 한 줄로 표시) */
-.filter-label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--md-sys-color-primary);
-  white-space: nowrap;
-  display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 2px 0;
+  border-bottom: 2px solid var(--md-sys-color-surface-container-highest);
+  padding: 0 4px;
+  width: 100%;
 }
 
-/* 요리분류 칩 영역: 기본 가로 스크롤 */
-.chips-scroll-area {
+.m3-tab-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: color var(--md-motion-duration-short) ease,
+              background-color var(--md-motion-duration-short) ease;
+  border-radius: var(--md-shape-corner-medium) var(--md-shape-corner-medium) 0 0;
+  user-select: none;
+}
+
+.m3-tab-btn:hover {
+  background-color: rgba(103, 80, 164, 0.08);
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-tab-btn.active {
+  color: var(--md-sys-color-primary);
+  font-weight: 700;
+}
+
+.m3-tab-btn .tab-icon {
+  font-size: 20px;
+}
+
+.m3-tab-btn .tab-text {
+  letter-spacing: 0.01em;
+}
+
+/* 탭 하단 활성 인디케이터 바 */
+.m3-tab-btn .tab-indicator {
+  position: absolute;
+  bottom: -2px;
+  left: 14px;
+  right: 14px;
+  height: 3px;
+  background-color: transparent;
+  border-radius: 3px 3px 0 0;
+  transition: background-color var(--md-motion-duration-short) var(--md-motion-easing-standard);
+}
+
+.m3-tab-btn.active .tab-indicator {
+  background-color: var(--md-sys-color-primary);
+}
+
+/* 탭 패널 컨텐츠 */
+.m3-tab-panels {
+  width: 100%;
+}
+
+.tab-panel {
+  display: none;
+  width: 100%;
+}
+
+.tab-panel.active {
+  display: block;
+  animation: tabFadeIn 0.22s ease-out;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 요리분류 & 채널·셰프 칩 영역: 가로 스크롤바 없이 두 줄로 깔끔하게 펼쳐져 한눈에 표시 */
+.chips-scroll-area,
+#categoryChips,
+#channelChips {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;        /* 두 줄로 보기 편하게 자동 줄바꿈되어 펼쳐짐 */
   align-items: center;
   gap: 8px;
-  overflow-x: auto;
-  padding: 4px 2px 10px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--md-sys-color-outline-variant) transparent;
-}
-
-.chips-scroll-area::-webkit-scrollbar {
-  height: 5px;
-}
-
-.chips-scroll-area::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.chips-scroll-area::-webkit-scrollbar-thumb {
-  background: var(--md-sys-color-outline-variant);
-  border-radius: var(--md-shape-corner-full);
-}
-
-/* 채널·셰프 칩 영역: 두 줄로 깔끔하게 감싸져서 한눈에 표시 */
-#channelChips {
-  display: flex;
-  flex-wrap: wrap;        /* 2줄로 자동 줄바꿈되어 펼쳐짐 */
-  gap: 8px;
-  width: 100%;
-  padding: 4px 2px 8px;
-  overflow-x: visible;    /* 가로 스크롤바 제거 */
+  padding: 6px 2px 8px;
+  overflow-x: visible;    /* 답답한 가로 스크롤바 제거 */
 }
 
 /* 완전한 캡슐형 둥근 알약 버튼 (Pill Button)
@@ -1408,32 +1493,131 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* 상단 앱바: 겹침 원천 차단 (Flex 순서 기반 2행 구조) */
   .top-app-bar {
-    padding: 12px 16px;
+    padding: 10px 16px;
   }
   
   .top-bar-inner {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .brand-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
+    gap: 8px;
   }
 
-  .search-wrapper {
-    max-width: 100%;
-    order: 3;
+  /* 1행 좌측: 로고 + 타이틀 */
+  .brand-section {
+    order: 1;
+    flex: 1;
+    min-width: 0;
+    gap: 8px;
   }
 
+  .brand-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    border-radius: var(--md-shape-corner-small);
+    flex-shrink: 0;
+  }
+
+  .brand-text-group {
+    min-width: 0;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    gap: 6px;
+  }
+
+  .brand-badge {
+    font-size: 0.68rem;
+    padding: 1px 6px;
+  }
+
+  .brand-subtitle {
+    display: none; /* 모바일에서 폭 확보를 위해 숨김 */
+  }
+
+  /* 1행 우측: 찜 버튼 (absolute 제거! 절대 타이틀을 덮지 않음) */
   .header-actions {
-    position: absolute;
-    top: 14px;
-    right: 16px;
+    order: 2;
+    position: static;
+    top: auto;
+    right: auto;
+    flex-shrink: 0;
+  }
+
+  .favorite-toggle-btn {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .favorite-toggle-btn .heart-icon {
+    font-size: 18px;
+  }
+
+  .today-random-btn {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .today-random-btn .dice-icon {
+    font-size: 18px;
+  }
+
+  /* 2행: 검색창 전체 너비로 쾌적하게 확장 */
+  .search-wrapper {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    margin-top: 4px;
+  }
+
+  .search-input-container {
+    padding: 5px 14px;
+  }
+
+  .search-input {
+    font-size: 0.88rem;
+  }
+
+  /* M3 탭 내비게이션 바 모바일 최적화 (균등 분할 탭) */
+  .m3-filter-tabs {
+    gap: 4px;
+  }
+
+  .m3-tab-btn {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 0.88rem;
+    gap: 6px;
+  }
+
+  .m3-tab-btn .tab-icon {
+    font-size: 18px;
   }
 
   .filter-container {
     padding: 0 16px;
+    margin: 12px auto 8px;
+  }
+
+  /* 상태바 */
+  .status-bar {
+    padding: 0 16px;
+    margin: 4px auto 12px;
+    font-size: 0.82rem;
+    gap: 8px;
   }
 
   .recipe-container {
@@ -1442,21 +1626,118 @@ body {
 
   .recipe-grid {
     grid-template-columns: 1fr !important;
-    gap: 16px;
+    gap: 14px;
   }
 
   .fab-container {
     bottom: 20px;
-    right: 20px;
+    right: 16px;
+    gap: 10px;
   }
 
   .m3-fab {
-    padding: 14px 18px;
-    font-size: 0.88rem;
+    padding: 12px 16px;
+    font-size: 0.84rem;
+  }
+
+  .m3-fab .fab-icon {
+    font-size: 20px;
+  }
+
+  .scroll-top-btn {
+    width: 42px;
+    height: 42px;
   }
 
   .video-frame-container.shorts-ratio {
     max-width: 100%;
     aspect-ratio: 9 / 16;
+  }
+
+  /* 모바일 모달 팝업 최적화 */
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .m3-dialog-card {
+    max-width: 100%;
+    border-radius: var(--md-shape-corner-large);
+  }
+
+  .dialog-header {
+    padding: 14px 18px;
+  }
+
+  .dialog-title {
+    font-size: 1rem;
+  }
+
+  .dialog-body {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .dialog-meta-info {
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .dialog-external-btn {
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* 복원 모달 항목 모바일 크기 최적화 */
+  .restore-item-card {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .restore-thumb-img {
+    width: 52px;
+    height: 34px;
+  }
+
+  .restore-item-title {
+    font-size: 0.84rem;
+  }
+
+  .restore-item-meta {
+    font-size: 0.72rem;
+  }
+
+  .single-restore-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* 400px 이하 초소형 스마트폰 대응 */
+@media (max-width: 400px) {
+  .brand-title {
+    font-size: 0.95rem;
+  }
+  
+  .favorite-toggle-btn {
+    padding: 5px 9px;
+    font-size: 0.76rem;
+  }
+
+  .today-random-btn {
+    padding: 5px 9px;
+    font-size: 0.76rem;
+  }
+
+  .fav-btn-text {
+    display: inline;
+  }
+
+  .m3-tab-btn {
+    padding: 8px 4px;
+    font-size: 0.82rem;
+    gap: 4px;
   }
 }

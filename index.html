@@ -12,32 +12,51 @@
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+  <!-- 유튜브 임베드 및 보안 정책 메타 태그 (오류 153 방지) -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <!-- Material 3 스타일시트 -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- =========================================================================
-       1. 상단 앱바 (Google Material 3 Top App Bar)
+       1. 상단 앱바 (Google Material 3 Top App Bar - 모바일 최적화 레이아웃)
        ========================================================================= -->
   <header class="top-app-bar">
     <div class="top-bar-inner">
       
-      <!-- 로고 및 서비스 타이틀 -->
+      <!-- 로고 및 서비스 타이틀 (모바일에서도 겹침 없이 좌측 배치) -->
       <div class="brand-section">
         <div class="brand-icon-wrapper">
           <span class="material-symbols-outlined">skillet</span>
         </div>
-        <div>
+        <div class="brand-text-group">
           <h1 class="brand-title">
-            요리 레시피 큐레이션
-            <span class="brand-badge" id="totalCountBadge">297개</span>
+            요리레시피
+            <span class="brand-badge" id="totalCountBadge">340개</span>
           </h1>
           <p class="brand-subtitle">유튜브 셰프 & 카테고리별 스마트 레시피 북</p>
         </div>
       </div>
 
-      <!-- M3 알약형 검색창 (Pill Search Bar) -->
+      <!-- 우측 상단 액션 버튼 그룹 (찜한 레시피 및 오늘 뭐 먹지? 버튼) -->
+      <div class="header-actions">
+        <!-- 내가 찜한 레시피 모아보기 토글 버튼 -->
+        <button type="button" id="favoriteToggleBtn" class="favorite-toggle-btn ripple-target" title="내가 찜한 레시피만 모아보기">
+          <span class="material-symbols-outlined heart-icon">favorite</span>
+          <span class="fav-btn-text">찜한 레시피</span>
+          <span id="favCountBadge" class="fav-count-num">(0)</span>
+        </button>
+
+        <!-- 오늘 뭐 먹지? 랜덤 추천 버튼 (플로팅에서 상단 헤더로 이동) -->
+        <button type="button" id="randomRecipeBtn" class="today-random-btn ripple-target" title="오늘 뭐 먹지? 무작위 레시피 추천">
+          <span class="material-symbols-outlined dice-icon">casino</span>
+          <span class="random-btn-text">오늘 뭐 먹지?</span>
+        </button>
+      </div>
+
+      <!-- M3 알약형 검색창 (Pill Search Bar - 모바일에서는 다음 줄에 100% 폭으로 깔끔하게 배치) -->
       <div class="search-wrapper">
         <div class="search-input-container">
           <span class="material-symbols-outlined search-icon">search</span>
@@ -54,43 +73,62 @@
         </div>
       </div>
 
-      <!-- 우측 즐겨찾기(찜) 토글 버튼 -->
-      <div class="header-actions">
-        <button type="button" id="favoriteToggleBtn" class="favorite-toggle-btn ripple-target" title="내가 찜한 레시피만 모아보기">
-          <span class="material-symbols-outlined heart-icon" style="font-size: 20px;">favorite</span>
-          <span>찜한 레시피</span>
-          <span id="favCountBadge" style="font-size: 0.78rem; opacity: 0.85;">(0)</span>
-        </button>
-      </div>
-
     </div>
   </header>
 
   <!-- =========================================================================
-       2. 안드로이드 퀵 세팅 스타일 알약 필터 칩 바 (M3 Pill Filter Chips)
+       2. Google M3 탭형 알약 필터 영역 (요리분류 / 채널·셰프 각각 탭 배치)
        ========================================================================= -->
   <section class="filter-container" id="filterContainer">
     
-    <!-- 카테고리별 알약 필터 (윗줄 레이블, 아랫줄 칩) -->
-    <div class="filter-group">
-      <div class="filter-label">
-        <span class="material-symbols-outlined" style="font-size: 18px;">restaurant_menu</span>
-        <span>요리분류</span>
-      </div>
-      <div class="chips-scroll-area" id="categoryChips">
-        <!-- 자바스크립트로 캡슐형 버튼 동적 생성 -->
-      </div>
+    <!-- M3 탭 내비게이션 바 (요리분류 탭 & 채널·셰프 탭) -->
+    <div class="m3-filter-tabs" role="tablist">
+      <button 
+        type="button" 
+        class="m3-tab-btn active ripple-target" 
+        id="tabCategoryBtn" 
+        role="tab" 
+        aria-selected="true" 
+        aria-controls="tabPanelCategory"
+        title="요리 종류별 카테고리 필터 보기"
+      >
+        <span class="material-symbols-outlined tab-icon">restaurant_menu</span>
+        <span class="tab-text">요리분류</span>
+        <span class="tab-indicator"></span>
+      </button>
+
+      <button 
+        type="button" 
+        class="m3-tab-btn ripple-target" 
+        id="tabChannelBtn" 
+        role="tab" 
+        aria-selected="false" 
+        aria-controls="tabPanelChannel"
+        title="셰프 및 채널별 필터 보기"
+      >
+        <span class="material-symbols-outlined tab-icon">person</span>
+        <span class="tab-text">채널·셰프</span>
+        <span class="tab-indicator"></span>
+      </button>
     </div>
 
-    <!-- 셰프 및 채널별 알약 필터 (두 줄로 표시) -->
-    <div class="filter-group">
-      <div class="filter-label">
-        <span class="material-symbols-outlined" style="font-size: 18px;">person</span>
-        <span>채널·셰프</span>
+    <!-- 탭 패널 컨텐츠 영역 -->
+    <div class="m3-tab-panels">
+      
+      <!-- 1) 요리분류 탭 패널 (가로 스크롤 칩) -->
+      <div class="tab-panel active" id="tabPanelCategory" role="tabpanel" aria-labelledby="tabCategoryBtn">
+        <div class="chips-scroll-area" id="categoryChips">
+          <!-- 자바스크립트로 캡슐형 알약 버튼 동적 생성 -->
+        </div>
       </div>
-      <div class="chips-scroll-area" id="channelChips">
-        <!-- 자바스크립트로 캡슐형 버튼 동적 생성 (두 줄 레이아웃) -->
+
+      <!-- 2) 채널·셰프 탭 패널 (두 줄 랩핑 칩) -->
+      <div class="tab-panel" id="tabPanelChannel" role="tabpanel" aria-labelledby="tabChannelBtn">
+        <div class="chips-scroll-area chips-wrap-area" id="channelChips">
+          <!-- 자바스크립트로 캡슐형 알약 버튼 동적 생성 -->
+        </div>
       </div>
+
     </div>
 
   </section>
@@ -103,7 +141,7 @@
       <div class="status-count">
         검색된 레시피 <strong id="resultCount">297</strong>개
       </div>
-      <!-- 데스크탑 4열, 5열, 6열, 7열 선택 세그먼트 버튼 그룹 -->
+      <!-- 데스크탑 4열, 5열, 6열, 7열 선택 세그먼트 버튼 그룹 (모바일에서는 자동 숨김) -->
       <div class="grid-columns-selector" id="gridColumnsSelector">
         <span class="grid-selector-label">
           <span class="material-symbols-outlined" style="font-size: 16px;">view_column</span>
@@ -148,18 +186,12 @@
   </main>
 
   <!-- =========================================================================
-       5. 플로팅 액션 버튼 (FAB - Floating Action Buttons)
+       5. 플로팅 액션 버튼 (FAB - 맨 위로 가기 단독 지원)
        ========================================================================= -->
   <div class="fab-container">
     <!-- 위로 가기 미니 FAB -->
     <button type="button" id="scrollTopBtn" class="scroll-top-btn ripple-target" title="맨 위로 가기">
       <span class="material-symbols-outlined">arrow_upward</span>
-    </button>
-    
-    <!-- 지메일 스타일 "오늘 뭐 먹지?" 랜덤 레시피 추천 FAB -->
-    <button type="button" id="randomRecipeFab" class="m3-fab ripple-target" title="랜덤 레시피 뽑기">
-      <span class="material-symbols-outlined fab-icon">casino</span>
-      <span>오늘 뭐 먹지?</span>
     </button>
   </div>
 
@@ -339,8 +371,8 @@
     <span id="toastText">알림 내용</span>
   </div>
 
-  <!-- 데이터 및 애플리케이션 스크립트 연결 -->
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <!-- 데이터 및 애플리케이션 스크립트 연결 (캐시 방지 쿼리 파라미터 적용) -->
+  <script src="data.js?v=340"></script>
+  <script src="app.js?v=340"></script>
 </body>
 </html>

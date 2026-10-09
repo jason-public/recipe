@@ -4,7 +4,7 @@
  * ----------------------------------------------------------------------------
  * 이 파일은 구글 문서에서 추출한 297개의 레시피 데이터를 화면에 렌더링하고,
  * 사용자의 커스텀 변경 사항(카테고리 수정, 카드 삭제 및 선택 복원, 찜하기,
- * 데스크탑 4~7열 그리드 선택, 유튜브 비디오 재생 및 전체화면)을
+ * 데스크탑 4~7열 그리드 선택, 요리분류/채널·셰프 탭 전환, 유튜브 비디오 재생 및 전체화면)을
  * 브라우저 로컬 저장소(LocalStorage)를 통해 온·오프라인에서 영구 보존합니다.
  *
  * [주요 기능 목차]
@@ -16,13 +16,14 @@
  * 6. 레시피 카드 삭제 로직
  * 7. 삭제된 레시피 선택 복원 모달 시스템 (개별 영상 복원 & 전체 복원)
  * 8. 데스크탑 4열, 5열, 6열, 7열 그리드 전환 시스템
- * 9. M3 알약(Pill) 필터 칩 동적 렌더링 및 개수 집계
- * 10. 다차원 검색 및 교차 필터링 로직
- * 11. 레시피 카드 그리드 렌더링 (구글 킵 스타일)
- * 12. M3 유튜브 비디오 임베드 모달 팝업 제어 (유튜브 오류 153 방지 & 전체화면 지원)
- * 13. "오늘 뭐 먹지?" 랜덤 레시피 추천 FAB 로직
- * 14. Material Ripple (물결 클릭) 애니메이션 구현
- * 15. 이벤트 리스너 등록 및 앱 초기 구동
+ * 9. [신규] M3 필터 탭(요리분류 / 채널·셰프) 전환 시스템
+ * 10. M3 알약(Pill) 필터 칩 동적 렌더링 및 개수 집계
+ * 11. 다차원 검색 및 교차 필터링 로직
+ * 12. 레시피 카드 그리드 렌더링 (구글 킵 스타일)
+ * 13. M3 유튜브 비디오 임베드 모달 팝업 제어 (유튜브 오류 153 방지 & 전체화면 지원)
+ * 14. "오늘 뭐 먹지?" 랜덤 레시피 추천 FAB 로직
+ * 15. Material Ripple (물결 클릭) 애니메이션 구현
+ * 16. 이벤트 리스너 등록 및 앱 초기 구동
  * ============================================================================
  */
 
@@ -52,6 +53,8 @@ const AppState = {
   isFullscreenMode: false,
   // 현재 선택된 데스크탑 그리드 열 수 (기본 4열, 4~7 지원)
   gridColumns: 4,
+  // [신규] 현재 활성화된 필터 탭 ('category' 또는 'channel')
+  activeFilterTab: 'category',
   
   // 찜한 레시피 ID 집합 (빠른 조회를 위해 Set 사용)
   favoriteIds: new Set(),
@@ -75,6 +78,12 @@ const DOM = {
   favoriteToggleBtn: document.getElementById('favoriteToggleBtn'),
   favCountBadge: document.getElementById('favCountBadge'),
 
+  // [신규] M3 필터 탭 및 패널 요소
+  tabCategoryBtn: document.getElementById('tabCategoryBtn'),
+  tabChannelBtn: document.getElementById('tabChannelBtn'),
+  tabPanelCategory: document.getElementById('tabPanelCategory'),
+  tabPanelChannel: document.getElementById('tabPanelChannel'),
+
   // 필터 컨테이너 및 알약 칩 영역
   filterContainer: document.getElementById('filterContainer'),
   categoryChips: document.getElementById('categoryChips'),
@@ -92,8 +101,9 @@ const DOM = {
   recipeContainer: document.getElementById('recipeContainer'),
   recipeGrid: document.getElementById('recipeGrid'),
 
-  // 플로팅 버튼(FAB)
+  // 플로팅 및 상단 액션 버튼
   scrollTopBtn: document.getElementById('scrollTopBtn'),
+  randomRecipeBtn: document.getElementById('randomRecipeBtn') || document.getElementById('randomRecipeFab'),
   randomRecipeFab: document.getElementById('randomRecipeFab'),
   
   // 비디오 재생 모달 요소
@@ -127,7 +137,7 @@ const DOM = {
   cancelDeleteBtn: document.getElementById('cancelDeleteBtn'),
   confirmDeleteBtn: document.getElementById('confirmDeleteBtn'),
 
-  // [신규] 삭제된 레시피 선택 복원 모달 요소
+  // 삭제된 레시피 선택 복원 모달 요소
   restoreSelectModal: document.getElementById('restoreSelectModal'),
   restoreSelectCloseBtn: document.getElementById('restoreSelectCloseBtn'),
   closeRestoreModalBtn: document.getElementById('closeRestoreModalBtn'),
@@ -393,7 +403,7 @@ function confirmDeleteRecipe() {
 }
 
 /* ==========================================================================
-   7. [신규] 삭제된 레시피 선택 복원 모달 시스템
+   7. 삭제된 레시피 선택 복원 모달 시스템
    ========================================================================== */
 /**
  * 삭제된 레시피 목록을 확인하고 원하는 영상을 선택하여 복원할 수 있는 모달을 엽니다.
@@ -538,7 +548,7 @@ window.openRestoreSelectModal = openRestoreSelectModal;
 window.restoreAllDeletedRecipes = restoreAllDeletedRecipes;
 
 /* ==========================================================================
-   8. [신규] 데스크탑 4열, 5열, 6열, 7열 그리드 전환 시스템
+   8. 데스크탑 4열, 5열, 6열, 7열 그리드 전환 시스템
    ========================================================================== */
 /**
  * 데스크탑 화면에서 레시피 카드의 열(Column) 개수를 4열, 5열, 6열, 7열로 설정합니다.
@@ -590,7 +600,40 @@ function setGridColumns(cols, showToastMsg = true) {
 }
 
 /* ==========================================================================
-   9. M3 알약(Pill) 필터 칩 렌더링 및 개수 집계
+   9. [신규] M3 필터 탭(요리분류 / 채널·셰프) 전환 시스템
+   ========================================================================== */
+/**
+ * 요리분류 탭과 채널·셰프 탭을 전환합니다.
+ * @param {'category' | 'channel'} tabName 전환할 탭 이름
+ */
+function switchFilterTab(tabName) {
+  AppState.activeFilterTab = tabName;
+
+  if (tabName === 'category') {
+    // 요리분류 탭 활성화
+    DOM.tabCategoryBtn.classList.add('active');
+    DOM.tabCategoryBtn.setAttribute('aria-selected', 'true');
+    DOM.tabPanelCategory.classList.add('active');
+
+    // 채널·셰프 탭 비활성화
+    DOM.tabChannelBtn.classList.remove('active');
+    DOM.tabChannelBtn.setAttribute('aria-selected', 'false');
+    DOM.tabPanelChannel.classList.remove('active');
+  } else {
+    // 채널·셰프 탭 활성화
+    DOM.tabChannelBtn.classList.add('active');
+    DOM.tabChannelBtn.setAttribute('aria-selected', 'true');
+    DOM.tabPanelChannel.classList.add('active');
+
+    // 요리분류 탭 비활성화
+    DOM.tabCategoryBtn.classList.remove('active');
+    DOM.tabCategoryBtn.setAttribute('aria-selected', 'false');
+    DOM.tabPanelCategory.classList.remove('active');
+  }
+}
+
+/* ==========================================================================
+   10. M3 알약(Pill) 필터 칩 렌더링 및 개수 집계
    ========================================================================== */
 /**
  * 요리분류 및 채널/셰프 알약 칩을 동적으로 생성하고 각 항목별 레시피 개수를 표시합니다.
@@ -631,7 +674,7 @@ function renderFilterChips() {
     DOM.categoryChips.appendChild(chip);
   });
 
-  // 채널·셰프 칩 생성 (두 줄 레이아웃)
+  // 채널·셰프 칩 생성
   DOM.channelChips.innerHTML = '';
   CHANNELS.forEach(ch => {
     const count = channelCounts[ch] || 0;
@@ -673,6 +716,25 @@ function updateActiveChips() {
     }
   });
 
+  // 탭 텍스트에 현재 필터 적용 여부 표시 (사용자 편의 힌트)
+  if (DOM.tabCategoryBtn) {
+    const tabText = DOM.tabCategoryBtn.querySelector('.tab-text');
+    if (tabText) {
+      tabText.textContent = AppState.selectedCategory !== '전체' 
+        ? `요리분류 (${AppState.selectedCategory})` 
+        : '요리분류';
+    }
+  }
+
+  if (DOM.tabChannelBtn) {
+    const tabText = DOM.tabChannelBtn.querySelector('.tab-text');
+    if (tabText) {
+      tabText.textContent = AppState.selectedChannel !== '전체' 
+        ? `채널·셰프 (${AppState.selectedChannel.split(' ')[0]})` 
+        : '채널·셰프';
+    }
+  }
+
   // 조건이 하나라도 적용되어 있는지 확인
   const hasFilter = AppState.selectedCategory !== '전체' || 
                     AppState.selectedChannel !== '전체' || 
@@ -683,7 +745,7 @@ function updateActiveChips() {
 }
 
 /* ==========================================================================
-   10. 다차원 검색 및 필터링 로직
+   11. 다차원 검색 및 필터링 로직
    ========================================================================== */
 /**
  * 선택된 카테고리, 채널, 검색어, 찜 상태에 따라 필터링된 레시피 목록을 반환합니다.
@@ -727,7 +789,7 @@ function getFilteredRecipes() {
 }
 
 /* ==========================================================================
-   11. 레시피 카드 그리드 렌더링 (Google Keep Style)
+   12. 레시피 카드 그리드 렌더링 (Google Keep Style)
    ========================================================================== */
 /**
  * 검색/필터 조건에 부합하는 레시피들을 구글 킵(Keep) 스타일 카드로 렌더링합니다.
@@ -914,7 +976,7 @@ function attachCardEventListeners() {
 }
 
 /* ==========================================================================
-   12. M3 유튜브 비디오 임베드 모달 팝업 제어 (유튜브 오류 153 방지 & 전체화면 지원)
+   13. M3 유튜브 비디오 임베드 모달 팝업 제어 (유튜브 오류 153 방지 & 전체화면 지원)
    ========================================================================== */
 /**
  * 레시피 영상을 인앱 모달 팝업에서 재생합니다.
@@ -935,14 +997,14 @@ function openVideoModal(recipe) {
     DOM.videoFrameContainer.classList.remove('shorts-ratio');
   }
 
-  // 유튜브 영상 재생 (YouTube 오류 153 방지: youtube-nocookie.com 및 Referrer 정책 최적화)
+  // 유튜브 영상 재생 (YouTube 오류 153 완벽 방지)
+  // 1) origin 매개변수 및 enablejsapi를 제거하여 localhost/도메인 불일치 에러 153 원천 차단
+  // 2) 유튜브 공식 oEmbed 표준 규격(www.youtube.com/embed/ID) 적용
   if (recipe.youtubeId) {
-    const originParam = (window.location && window.location.origin) ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
-    const secureUrl = `https://www.youtube-nocookie.com/embed/${recipe.youtubeId}?autoplay=1&enablejsapi=1&rel=0${originParam}`;
-    DOM.videoIframe.src = secureUrl;
-  } else if (recipe.embedUrl && (recipe.embedUrl.includes('youtube.com/embed/') || recipe.embedUrl.includes('youtube-nocookie.com/embed/'))) {
-    const secureUrl = recipe.embedUrl.replace('www.youtube.com', 'www.youtube-nocookie.com');
-    DOM.videoIframe.src = secureUrl;
+    const embedSrc = `https://www.youtube.com/embed/${recipe.youtubeId}?autoplay=1&rel=0`;
+    DOM.videoIframe.src = embedSrc;
+  } else if (recipe.embedUrl && recipe.embedUrl.includes('embed/')) {
+    DOM.videoIframe.src = recipe.embedUrl;
   } else {
     // 외부 기사 또는 유튜브가 아닌 링크
     window.open(recipe.url, '_blank', 'noopener,noreferrer');
@@ -1004,7 +1066,7 @@ function setModalFullscreen(enable) {
 }
 
 /* ==========================================================================
-   13. "오늘 뭐 먹지?" 랜덤 레시피 추천 FAB 로직
+   14. "오늘 뭐 먹지?" 랜덤 레시피 추천 FAB 로직
    ========================================================================== */
 /**
  * 활성 레시피 중에서 무작위로 1개를 뽑아 추천 모달에 표시합니다.
@@ -1058,7 +1120,7 @@ function closeRandomModal() {
 }
 
 /* ==========================================================================
-   14. Material Ripple (물결 클릭 터치 인터랙션)
+   15. Material Ripple (물결 클릭 터치 인터랙션)
    ========================================================================== */
 function initRippleEffect() {
   document.addEventListener('click', function(e) {
@@ -1086,7 +1148,7 @@ function initRippleEffect() {
 }
 
 /* ==========================================================================
-   15. M3 토스트 메시지 함수
+   16. M3 토스트 메시지 함수
    ========================================================================== */
 let toastTimeoutId = null;
 
@@ -1105,7 +1167,7 @@ function showToast(message, iconName = 'info') {
 }
 
 /* ==========================================================================
-   16. 전체 필터 초기화 함수
+   17. 전체 필터 초기화 함수
    ========================================================================== */
 window.resetAllFilters = function() {
   AppState.selectedCategory = '전체';
@@ -1123,7 +1185,7 @@ window.resetAllFilters = function() {
 };
 
 /* ==========================================================================
-   17. 이벤트 리스너 등록 및 앱 초기 구동
+   18. 이벤트 리스너 등록 및 앱 초기 구동
    ========================================================================== */
 function setupEventListeners() {
   // 실시간 검색창 입력
@@ -1162,15 +1224,23 @@ function setupEventListeners() {
     renderRecipeGrid();
   });
 
+  // [신규] M3 필터 탭 클릭 이벤트 (요리분류 vs 채널·셰프)
+  if (DOM.tabCategoryBtn) {
+    DOM.tabCategoryBtn.addEventListener('click', () => switchFilterTab('category'));
+  }
+  if (DOM.tabChannelBtn) {
+    DOM.tabChannelBtn.addEventListener('click', () => switchFilterTab('channel'));
+  }
+
   // 필터 초기화 버튼
   DOM.resetFilterBtn.addEventListener('click', resetAllFilters);
 
-  // [신규] 삭제된 레시피 복원 버튼 클릭 시 '복원 선택 모달' 열기
+  // 삭제된 레시피 복원 버튼 클릭 시 '복원 선택 모달' 열기
   if (DOM.restoreDeletedBtn) {
     DOM.restoreDeletedBtn.addEventListener('click', openRestoreSelectModal);
   }
 
-  // [신규] 복원 선택 모달 닫기 및 전체 복원 버튼
+  // 복원 선택 모달 닫기 및 전체 복원 버튼
   if (DOM.restoreSelectCloseBtn) {
     DOM.restoreSelectCloseBtn.addEventListener('click', closeRestoreSelectModal);
   }
@@ -1186,7 +1256,7 @@ function setupEventListeners() {
     });
   }
 
-  // [신규] 데스크탑 4열, 5열, 6열, 7열 세그먼트 버튼 이벤트
+  // 데스크탑 4열, 5열, 6열, 7열 세그먼트 버튼 이벤트
   if (DOM.gridSegmentedGroup) {
     const buttons = DOM.gridSegmentedGroup.querySelectorAll('.segmented-btn');
     buttons.forEach(btn => {
@@ -1244,8 +1314,12 @@ function setupEventListeners() {
     }
   });
 
-  // "오늘 뭐 먹지?" FAB 클릭
-  DOM.randomRecipeFab.addEventListener('click', pickRandomRecipe);
+  // "오늘 뭐 먹지?" 추천 버튼 클릭 (상단 헤더 버튼 및 이전 FAB 호환 지원)
+  if (DOM.randomRecipeBtn) {
+    DOM.randomRecipeBtn.addEventListener('click', pickRandomRecipe);
+  } else if (DOM.randomRecipeFab) {
+    DOM.randomRecipeFab.addEventListener('click', pickRandomRecipe);
+  }
 
   // 맨 위로 스크롤 버튼 표시 및 클릭
   window.addEventListener('scroll', () => {
@@ -1282,9 +1356,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. 레시피 그리드 초기 렌더링
   renderRecipeGrid();
 
-  // 5. 이벤트 리스너 등록
+  // 5. 기본 탭('category') 초기화
+  switchFilterTab('category');
+
+  // 6. 이벤트 리스너 등록
   setupEventListeners();
 
-  // 6. 물결 터치(Ripple) 효과 초기화
+  // 7. 물결 터치(Ripple) 효과 초기화
   initRippleEffect();
 });

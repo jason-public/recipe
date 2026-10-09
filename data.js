@@ -5008,6 +5008,799 @@ const RECIPE_DATA = [
       "주방",
       "GQ"
     ]
+  },
+  {
+    "id": "recipe_298",
+    "indexNumber": 298,
+    "title": "닭고기에 계란을 부었더니 5분만에 오야꼬동 완성?!",
+    "originalTitle": "닭고기에 계란을 부었더니 5분만에 오야꼬동 완성?!",
+    "url": "https://youtube.com/shorts/2v3yph4rU90",
+    "category": "밥/볶음밥/덮밥",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "2v3yph4rU90",
+    "thumbnail": "https://i.ytimg.com/vi/2v3yph4rU90/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/2v3yph4rU90?autoplay=1&rel=0",
+    "tags": [
+      "덮밥",
+      "혼밥",
+      "밥"
+    ]
+  },
+  {
+    "id": "recipe_299",
+    "indexNumber": 299,
+    "title": "항정살은 부추무침이랑 드세요… 조합 미쳤습니다🔥",
+    "originalTitle": "항정살은 부추무침이랑 드세요… 조합 미쳤습니다🔥",
+    "url": "https://youtube.com/shorts/h6bXLKCv8Gw",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "h6bXLKCv8Gw",
+    "thumbnail": "https://i.ytimg.com/vi/h6bXLKCv8Gw/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/h6bXLKCv8Gw?autoplay=1&rel=0",
+    "tags": [
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
+  },
+  {
+    "id": "recipe_300",
+    "indexNumber": 300,
+    "title": "비빔면이 4배 더 맛있어지는 방법? 윤남노 셰프 레시피🔥",
+    "originalTitle": "비빔면이 4배 더 맛있어지는 방법? 윤남노 셰프 레시피🔥",
+    "url": "https://youtube.com/shorts/-y48F-cqzww",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "-y48F-cqzww",
+    "thumbnail": "https://i.ytimg.com/vi/-y48F-cqzww/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/-y48F-cqzww?autoplay=1&rel=0",
+    "tags": [
+      "윤남노",
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_301",
+    "indexNumber": 301,
+    "title": "한입 먹자마자 코끝 찡! 게맛살 겨자 샐러드",
+    "originalTitle": "한입 먹자마자 코끝 찡! 게맛살 겨자 샐러드",
+    "url": "https://youtube.com/shorts/iu93CNcm6n0",
+    "category": "반찬/장류",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "iu93CNcm6n0",
+    "thumbnail": "https://i.ytimg.com/vi/iu93CNcm6n0/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/iu93CNcm6n0?autoplay=1&rel=0",
+    "tags": [
+      "요리",
+      "반찬",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_302",
+    "indexNumber": 302,
+    "title": "부라타 치즈가 왜 ‘천상의 맛’이라 불리는지 알겠네요",
+    "originalTitle": "부라타 치즈가 왜 ‘천상의 맛’이라 불리는지 알겠네요",
+    "url": "https://youtube.com/shorts/ItffZ3BGVEU",
+    "category": "분식/간식/토스트",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "ItffZ3BGVEU",
+    "thumbnail": "https://i.ytimg.com/vi/ItffZ3BGVEU/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/ItffZ3BGVEU?autoplay=1&rel=0",
+    "tags": [
+      "분식",
+      "간식",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_303",
+    "indexNumber": 303,
+    "title": "크래미가 이렇게 바삭해진다고? 미친 안주 크래미칩🔥",
+    "originalTitle": "크래미가 이렇게 바삭해진다고? 미친 안주 크래미칩🔥",
+    "url": "https://youtube.com/shorts/1HGrNpf-J7I",
+    "category": "분식/간식/토스트",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "1HGrNpf-J7I",
+    "thumbnail": "https://i.ytimg.com/vi/1HGrNpf-J7I/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/1HGrNpf-J7I?autoplay=1&rel=0",
+    "tags": [
+      "분식",
+      "간식",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_304",
+    "indexNumber": 304,
+    "title": "지코바 이제 사 먹지 마세요! 레시피 종결판🔥",
+    "originalTitle": "지코바 이제 사 먹지 마세요! 레시피 종결판🔥",
+    "url": "https://youtube.com/shorts/qcwziAxG9rQ",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "qcwziAxG9rQ",
+    "thumbnail": "https://i.ytimg.com/vi/qcwziAxG9rQ/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/qcwziAxG9rQ?autoplay=1&rel=0",
+    "tags": [
+      "요리",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_305",
+    "indexNumber": 305,
+    "title": "뜨거운 불닭보다 더 맛있다고? 불닭볶음면에 냉면육수 조합🔥🧊",
+    "originalTitle": "뜨거운 불닭보다 더 맛있다고? 불닭볶음면에 냉면육수 조합🔥🧊",
+    "url": "https://youtube.com/shorts/gxSg63NuSj8",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "gxSg63NuSj8",
+    "thumbnail": "https://i.ytimg.com/vi/gxSg63NuSj8/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/gxSg63NuSj8?autoplay=1&rel=0",
+    "tags": [
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_306",
+    "indexNumber": 306,
+    "title": "국물까지 싹싹! 밥도둑 묵은지 닭볶음탕 레시피",
+    "originalTitle": "국물까지 싹싹! 밥도둑 묵은지 닭볶음탕 레시피",
+    "url": "https://youtube.com/shorts/OUygY4YChIw",
+    "category": "밥/볶음밥/덮밥",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "OUygY4YChIw",
+    "thumbnail": "https://i.ytimg.com/vi/OUygY4YChIw/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/OUygY4YChIw?autoplay=1&rel=0",
+    "tags": [
+      "덮밥",
+      "혼밥",
+      "밥"
+    ]
+  },
+  {
+    "id": "recipe_307",
+    "indexNumber": 307,
+    "title": "1289만명이 본 김치볶음밥, 도대체 뭐가 다를까?",
+    "originalTitle": "1289만명이 본 김치볶음밥, 도대체 뭐가 다를까?",
+    "url": "https://youtube.com/shorts/UB8hL-jvvO4",
+    "category": "밥/볶음밥/덮밥",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "UB8hL-jvvO4",
+    "thumbnail": "https://i.ytimg.com/vi/UB8hL-jvvO4/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/UB8hL-jvvO4?autoplay=1&rel=0",
+    "tags": [
+      "덮밥",
+      "혼밥",
+      "밥"
+    ]
+  },
+  {
+    "id": "recipe_308",
+    "indexNumber": 308,
+    "title": "떡볶이 양념, 이렇게 만들면 추억의 맛이 납니다",
+    "originalTitle": "떡볶이 양념, 이렇게 만들면 추억의 맛이 납니다",
+    "url": "https://youtube.com/shorts/ROP04PGzvTE",
+    "category": "분식/간식/토스트",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "ROP04PGzvTE",
+    "thumbnail": "https://i.ytimg.com/vi/ROP04PGzvTE/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/ROP04PGzvTE?autoplay=1&rel=0",
+    "tags": [
+      "분식",
+      "간식",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_309",
+    "indexNumber": 309,
+    "title": "평범한 비빔면이 확 달라지는 대파의 비밀",
+    "originalTitle": "평범한 비빔면이 확 달라지는 대파의 비밀",
+    "url": "https://youtube.com/shorts/cGRvBgcvGAU",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "cGRvBgcvGAU",
+    "thumbnail": "https://i.ytimg.com/vi/cGRvBgcvGAU/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/cGRvBgcvGAU?autoplay=1&rel=0",
+    "tags": [
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_310",
+    "indexNumber": 310,
+    "title": "평범한 라면이 짬뽕으로 변하는 비법!",
+    "originalTitle": "평범한 라면이 짬뽕으로 변하는 비법!",
+    "url": "https://youtube.com/shorts/xlzJ0ZLFse4",
+    "category": "짜장/짜파게티/짬뽕",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "xlzJ0ZLFse4",
+    "thumbnail": "https://i.ytimg.com/vi/xlzJ0ZLFse4/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/xlzJ0ZLFse4?autoplay=1&rel=0",
+    "tags": [
+      "중식",
+      "짜장",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_311",
+    "indexNumber": 311,
+    "title": "🔥 요즘 SNS에서 유행하는 꾸덕 신라면!",
+    "originalTitle": "🔥 요즘 SNS에서 유행하는 꾸덕 신라면!",
+    "url": "https://youtube.com/shorts/9lxFfKhq2uQ",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "9lxFfKhq2uQ",
+    "thumbnail": "https://i.ytimg.com/vi/9lxFfKhq2uQ/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/9lxFfKhq2uQ?autoplay=1&rel=0",
+    "tags": [
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_312",
+    "indexNumber": 312,
+    "title": "크림없는 크림 떡볶이",
+    "originalTitle": "크림없는 크림 떡볶이",
+    "url": "https://youtube.com/shorts/FP8dk8WTtL4",
+    "category": "분식/간식/토스트",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "FP8dk8WTtL4",
+    "thumbnail": "https://i.ytimg.com/vi/FP8dk8WTtL4/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/FP8dk8WTtL4?autoplay=1&rel=0",
+    "tags": [
+      "분식",
+      "간식",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_313",
+    "indexNumber": 313,
+    "title": "평범한 계란이 특별한 덮밥이 되는 비법",
+    "originalTitle": "평범한 계란이 특별한 덮밥이 되는 비법",
+    "url": "https://youtube.com/shorts/SfIbhlZlR-Q",
+    "category": "밥/볶음밥/덮밥",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "SfIbhlZlR-Q",
+    "thumbnail": "https://i.ytimg.com/vi/SfIbhlZlR-Q/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/SfIbhlZlR-Q?autoplay=1&rel=0",
+    "tags": [
+      "덮밥",
+      "혼밥",
+      "밥"
+    ]
+  },
+  {
+    "id": "recipe_314",
+    "indexNumber": 314,
+    "title": "더운 날 생각나는 초간단 냉라면 레시피",
+    "originalTitle": "더운 날 생각나는 초간단 냉라면 레시피",
+    "url": "https://youtube.com/shorts/5HpJljygTBw",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "5HpJljygTBw",
+    "thumbnail": "https://i.ytimg.com/vi/5HpJljygTBw/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/5HpJljygTBw?autoplay=1&rel=0",
+    "tags": [
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_315",
+    "indexNumber": 315,
+    "title": "이연복님의 마늘쫑 볶음 레시피!",
+    "originalTitle": "이연복님의 마늘쫑 볶음 레시피!",
+    "url": "https://youtube.com/shorts/IFP3YuQXHdw",
+    "category": "반찬/장류",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "IFP3YuQXHdw",
+    "thumbnail": "https://i.ytimg.com/vi/IFP3YuQXHdw/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/IFP3YuQXHdw?autoplay=1&rel=0",
+    "tags": [
+      "이연복",
+      "요리",
+      "반찬",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_316",
+    "indexNumber": 316,
+    "title": "여경래님의 토마토 달걀 볶음 레시피!",
+    "originalTitle": "여경래님의 토마토 달걀 볶음 레시피!",
+    "url": "https://youtube.com/shorts/Vmwvp_VSr5M",
+    "category": "반찬/장류",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "Vmwvp_VSr5M",
+    "thumbnail": "https://i.ytimg.com/vi/Vmwvp_VSr5M/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/Vmwvp_VSr5M?autoplay=1&rel=0",
+    "tags": [
+      "요리",
+      "반찬",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_317",
+    "indexNumber": 317,
+    "title": "오해원님의 순두부그라탕 레시피!",
+    "originalTitle": "오해원님의 순두부그라탕 레시피!",
+    "url": "https://youtube.com/shorts/osl_g-98z3M",
+    "category": "찌개/탕/국",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "osl_g-98z3M",
+    "thumbnail": "https://i.ytimg.com/vi/osl_g-98z3M/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/osl_g-98z3M?autoplay=1&rel=0",
+    "tags": [
+      "국물",
+      "혼밥",
+      "찌개"
+    ]
+  },
+  {
+    "id": "recipe_318",
+    "indexNumber": 318,
+    "title": "​류수영님의 대세 새우 로제파스타 레시피!​",
+    "originalTitle": "​류수영님의 대세 새우 로제파스타 레시피!​",
+    "url": "https://youtube.com/shorts/v2gw9vWqKZE",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "v2gw9vWqKZE",
+    "thumbnail": "https://i.ytimg.com/vi/v2gw9vWqKZE/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/v2gw9vWqKZE?autoplay=1&rel=0",
+    "tags": [
+      "류수영",
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_319",
+    "indexNumber": 319,
+    "title": "류수영님의 복날엔 초간단 닭백숙 레시피!",
+    "originalTitle": "류수영님의 복날엔 초간단 닭백숙 레시피!",
+    "url": "https://youtube.com/shorts/FNG3TCBoi6Q",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "FNG3TCBoi6Q",
+    "thumbnail": "https://i.ytimg.com/vi/FNG3TCBoi6Q/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/FNG3TCBoi6Q?autoplay=1&rel=0",
+    "tags": [
+      "류수영",
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
+  },
+  {
+    "id": "recipe_320",
+    "indexNumber": 320,
+    "title": "이정현님의 얼큰 구수한 K-에그인헬 레시피!",
+    "originalTitle": "이정현님의 얼큰 구수한 K-에그인헬 레시피!",
+    "url": "https://youtube.com/shorts/iWSG_qpXdjo",
+    "category": "분식/간식/토스트",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "iWSG_qpXdjo",
+    "thumbnail": "https://i.ytimg.com/vi/iWSG_qpXdjo/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/iWSG_qpXdjo?autoplay=1&rel=0",
+    "tags": [
+      "분식",
+      "이정현",
+      "간식",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_321",
+    "indexNumber": 321,
+    "title": "강레오님의 광어 세비체 레시피!",
+    "originalTitle": "강레오님의 광어 세비체 레시피!",
+    "url": "https://youtube.com/shorts/5zyIfA4Z764",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "5zyIfA4Z764",
+    "thumbnail": "https://i.ytimg.com/vi/5zyIfA4Z764/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/5zyIfA4Z764?autoplay=1&rel=0",
+    "tags": [
+      "강레오",
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
+  },
+  {
+    "id": "recipe_322",
+    "indexNumber": 322,
+    "title": "류수영님의 양념돼지갈비 레시피!",
+    "originalTitle": "류수영님의 양념돼지갈비 레시피!",
+    "url": "https://youtube.com/shorts/VAPrTurrKkE",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "VAPrTurrKkE",
+    "thumbnail": "https://i.ytimg.com/vi/VAPrTurrKkE/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/VAPrTurrKkE?autoplay=1&rel=0",
+    "tags": [
+      "류수영",
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
+  },
+  {
+    "id": "recipe_323",
+    "indexNumber": 323,
+    "title": "이정현님의 한끼뚝딱 대파크림파스타 레시피",
+    "originalTitle": "이정현님의 한끼뚝딱 대파크림파스타 레시피",
+    "url": "https://youtube.com/shorts/vBjo-VM7eEs",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "vBjo-VM7eEs",
+    "thumbnail": "https://i.ytimg.com/vi/vBjo-VM7eEs/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/vBjo-VM7eEs?autoplay=1&rel=0",
+    "tags": [
+      "이정현",
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_324",
+    "indexNumber": 324,
+    "title": "윤주모님의 애호박찌개 레시피",
+    "originalTitle": "윤주모님의 애호박찌개 레시피",
+    "url": "https://youtube.com/shorts/oyo66O13AeU",
+    "category": "찌개/탕/국",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "oyo66O13AeU",
+    "thumbnail": "https://i.ytimg.com/vi/oyo66O13AeU/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/oyo66O13AeU?autoplay=1&rel=0",
+    "tags": [
+      "국물",
+      "혼밥",
+      "찌개"
+    ]
+  },
+  {
+    "id": "recipe_325",
+    "indexNumber": 325,
+    "title": "김강우님의 들기름막국수 레시피",
+    "originalTitle": "김강우님의 들기름막국수 레시피",
+    "url": "https://youtube.com/shorts/_fPx4j2AIyU",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "_fPx4j2AIyU",
+    "thumbnail": "https://i.ytimg.com/vi/_fPx4j2AIyU/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/_fPx4j2AIyU?autoplay=1&rel=0",
+    "tags": [
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_326",
+    "indexNumber": 326,
+    "title": "정호영님의 오이부추무침 레시피",
+    "originalTitle": "정호영님의 오이부추무침 레시피",
+    "url": "https://youtube.com/shorts/QJyCOHWlhLU",
+    "category": "반찬/장류",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "QJyCOHWlhLU",
+    "thumbnail": "https://i.ytimg.com/vi/QJyCOHWlhLU/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/QJyCOHWlhLU?autoplay=1&rel=0",
+    "tags": [
+      "정호영",
+      "요리",
+      "반찬",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_327",
+    "indexNumber": 327,
+    "title": "이영자님의 새우호박전 레시피!",
+    "originalTitle": "이영자님의 새우호박전 레시피!",
+    "url": "https://youtube.com/shorts/tYsbMXWX01M",
+    "category": "반찬/장류",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "tYsbMXWX01M",
+    "thumbnail": "https://i.ytimg.com/vi/tYsbMXWX01M/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/tYsbMXWX01M?autoplay=1&rel=0",
+    "tags": [
+      "요리",
+      "반찬",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_328",
+    "indexNumber": 328,
+    "title": "성시경님의 차돌숙주볶음 레시피",
+    "originalTitle": "성시경님의 차돌숙주볶음 레시피",
+    "url": "https://youtube.com/shorts/0YyPOw3Y0Xk",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "0YyPOw3Y0Xk",
+    "thumbnail": "https://i.ytimg.com/vi/0YyPOw3Y0Xk/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/0YyPOw3Y0Xk?autoplay=1&rel=0",
+    "tags": [
+      "성시경",
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
+  },
+  {
+    "id": "recipe_329",
+    "indexNumber": 329,
+    "title": "김재중님의 15분 차돌갈비탕 레시피",
+    "originalTitle": "김재중님의 15분 차돌갈비탕 레시피",
+    "url": "https://youtube.com/shorts/7iqrGlxepwU",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "7iqrGlxepwU",
+    "thumbnail": "https://i.ytimg.com/vi/7iqrGlxepwU/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/7iqrGlxepwU?autoplay=1&rel=0",
+    "tags": [
+      "김재중",
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
+  },
+  {
+    "id": "recipe_330",
+    "indexNumber": 330,
+    "title": "이연복 셰프의 간짜장라면 레시피",
+    "originalTitle": "이연복 셰프의 간짜장라면 레시피",
+    "url": "https://youtube.com/shorts/5XDbsxjfLY4",
+    "category": "짜장/짜파게티/짬뽕",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "5XDbsxjfLY4",
+    "thumbnail": "https://i.ytimg.com/vi/5XDbsxjfLY4/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/5XDbsxjfLY4?autoplay=1&rel=0",
+    "tags": [
+      "이연복",
+      "중식",
+      "짜장",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_331",
+    "indexNumber": 331,
+    "title": "정호영님의 차돌박이된장술밥 레시피!",
+    "originalTitle": "정호영님의 차돌박이된장술밥 레시피!",
+    "url": "https://youtube.com/shorts/SvD0afXqFy4",
+    "category": "밥/볶음밥/덮밥",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "SvD0afXqFy4",
+    "thumbnail": "https://i.ytimg.com/vi/SvD0afXqFy4/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/SvD0afXqFy4?autoplay=1&rel=0",
+    "tags": [
+      "덮밥",
+      "정호영",
+      "혼밥",
+      "밥"
+    ]
+  },
+  {
+    "id": "recipe_332",
+    "indexNumber": 332,
+    "title": "류수영님의 평생떡볶이 레시피!",
+    "originalTitle": "류수영님의 평생떡볶이 레시피!",
+    "url": "https://youtube.com/shorts/xgsS0H6fYWk",
+    "category": "분식/간식/토스트",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "xgsS0H6fYWk",
+    "thumbnail": "https://i.ytimg.com/vi/xgsS0H6fYWk/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/xgsS0H6fYWk?autoplay=1&rel=0",
+    "tags": [
+      "분식",
+      "류수영",
+      "간식",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_333",
+    "indexNumber": 333,
+    "title": "성시경님의 순두부 열라면 레시피",
+    "originalTitle": "성시경님의 순두부 열라면 레시피",
+    "url": "https://youtube.com/shorts/49F3FcDrQIc",
+    "category": "라면/면요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "49F3FcDrQIc",
+    "thumbnail": "https://i.ytimg.com/vi/49F3FcDrQIc/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/49F3FcDrQIc?autoplay=1&rel=0",
+    "tags": [
+      "성시경",
+      "혼밥",
+      "라면",
+      "면요리"
+    ]
+  },
+  {
+    "id": "recipe_334",
+    "indexNumber": 334,
+    "title": "류수영님의 러브황태해장국 레시피",
+    "originalTitle": "류수영님의 러브황태해장국 레시피",
+    "url": "https://youtube.com/shorts/Z3Eyi29fyw0",
+    "category": "찌개/탕/국",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "Z3Eyi29fyw0",
+    "thumbnail": "https://i.ytimg.com/vi/Z3Eyi29fyw0/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/Z3Eyi29fyw0?autoplay=1&rel=0",
+    "tags": [
+      "류수영",
+      "국물",
+      "혼밥",
+      "찌개"
+    ]
+  },
+  {
+    "id": "recipe_335",
+    "indexNumber": 335,
+    "title": "성시경님의 대만식 양배추 볶음 레시피",
+    "originalTitle": "성시경님의 대만식 양배추 볶음 레시피",
+    "url": "https://youtube.com/shorts/0HFf7IuQu7Y",
+    "category": "반찬/장류",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "0HFf7IuQu7Y",
+    "thumbnail": "https://i.ytimg.com/vi/0HFf7IuQu7Y/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/0HFf7IuQu7Y?autoplay=1&rel=0",
+    "tags": [
+      "성시경",
+      "요리",
+      "반찬",
+      "혼밥"
+    ]
+  },
+  {
+    "id": "recipe_336",
+    "indexNumber": 336,
+    "title": "이찬원님의 초간단 계란밥 레시피",
+    "originalTitle": "이찬원님의 초간단 계란밥 레시피",
+    "url": "https://youtube.com/shorts/2jGu07VI57I",
+    "category": "밥/볶음밥/덮밥",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "2jGu07VI57I",
+    "thumbnail": "https://i.ytimg.com/vi/2jGu07VI57I/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/2jGu07VI57I?autoplay=1&rel=0",
+    "tags": [
+      "이찬원",
+      "덮밥",
+      "혼밥",
+      "밥"
+    ]
+  },
+  {
+    "id": "recipe_337",
+    "indexNumber": 337,
+    "title": "김풍님의 스팸 강된장 레시피",
+    "originalTitle": "김풍님의 스팸 강된장 레시피",
+    "url": "https://youtube.com/shorts/qu2xSjYokfU",
+    "category": "찌개/탕/국",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "qu2xSjYokfU",
+    "thumbnail": "https://i.ytimg.com/vi/qu2xSjYokfU/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/qu2xSjYokfU?autoplay=1&rel=0",
+    "tags": [
+      "김풍",
+      "국물",
+      "혼밥",
+      "찌개"
+    ]
+  },
+  {
+    "id": "recipe_338",
+    "indexNumber": 338,
+    "title": "이모카세 스타일 두부찌개 레시피",
+    "originalTitle": "이모카세 스타일 두부찌개 레시피",
+    "url": "https://youtube.com/shorts/b6c-qFQmE4Q",
+    "category": "찌개/탕/국",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "b6c-qFQmE4Q",
+    "thumbnail": "https://i.ytimg.com/vi/b6c-qFQmE4Q/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/b6c-qFQmE4Q?autoplay=1&rel=0",
+    "tags": [
+      "국물",
+      "혼밥",
+      "찌개"
+    ]
+  },
+  {
+    "id": "recipe_339",
+    "indexNumber": 339,
+    "title": "제육볶음 황금레시피｜감자전분으로 육즙 살리는 방법",
+    "originalTitle": "제육볶음 황금레시피｜감자전분으로 육즙 살리는 방법",
+    "url": "https://youtube.com/shorts/bN8k9UerhRY",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "bN8k9UerhRY",
+    "thumbnail": "https://i.ytimg.com/vi/bN8k9UerhRY/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/bN8k9UerhRY?autoplay=1&rel=0",
+    "tags": [
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
+  },
+  {
+    "id": "recipe_340",
+    "indexNumber": 340,
+    "title": "차예련님의 전설의 김치찜",
+    "originalTitle": "차예련님의 전설의 김치찜",
+    "url": "https://youtube.com/shorts/OLFGkaKCPps",
+    "category": "고기/메인요리",
+    "channel": "혼밥레시피",
+    "mediaType": "youtube_shorts",
+    "youtubeId": "OLFGkaKCPps",
+    "thumbnail": "https://i.ytimg.com/vi/OLFGkaKCPps/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/OLFGkaKCPps?autoplay=1&rel=0",
+    "tags": [
+      "차예련",
+      "혼밥",
+      "메인요리",
+      "고기"
+    ]
   }
 ];
 
@@ -5043,5 +5836,6 @@ const CHANNELS = [
   "연예인 꿀조합",
   "캠핑한끼",
   "생활의 달인",
-  "요리 꿀팁 / 크리에이터"
+  "요리 꿀팁 / 크리에이터",
+  "혼밥레시피"
 ];
